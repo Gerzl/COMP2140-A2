@@ -2,6 +2,10 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// API = https://0b5ff8b0.uqcloud.net/api/
 
 function App() {
   const [count, setCount] = useState(0)
