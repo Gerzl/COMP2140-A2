@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Projects() {
   const [projects, setProjects] = useState([]);
   const JWT_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJuYW1lIjoiczQ3NDUyMDEifQ.tR4ZyBoqQRRNMXkEKzplDtDr5YuMBv1HoGdK2nRwuhk';
+  const navigate = useNavigate(); // Use useNavigate for programmatic navigation
   
   useEffect(() => {
     // Fetch projects from the API when the component mounts
     fetch('https://0b5ff8b0.uqcloud.net/api/project', {
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${JWT_TOKEN}`,  // Replace with your JWT token
+        'Authorization': `Bearer ${JWT_TOKEN}`, 
       },
     })
       .then((response) => response.json())
@@ -23,7 +24,7 @@ function Projects() {
     fetch(`https://0b5ff8b0.uqcloud.net/api/project?id=eq.${id}`, {
       method: 'DELETE',
       headers: {
-        'Authorization': `Bearer ${JWT_TOKEN}`,  // Replace with your JWT token
+        'Authorization': `Bearer ${JWT_TOKEN}`, 
       },
     })
       .then(() => {
@@ -33,29 +34,42 @@ function Projects() {
       .catch((error) => console.error('Error deleting project:', error));
   };
 
+  const handleAddProject = () => {
+    // Navigate to the add-project page
+    navigate('/add-project');
+  };
 
+  const handleEditProject = (projectId) => {
+    // Navigate to the edit-project page
+    navigate(`/edit-project/${projectId}`);
+  };
+
+  const handleViewLocations = (projectId) => {
+    // Navigate to the locations page for the project
+    navigate(`/locations/${projectId}`);
+  };
 
   return (
-    <div className="page-content">
+    <div className="projects-content">
       <h1>Projects</h1>
-      <Link to="/add-project" className="add-project-link">Add Project</Link>
+      <button onClick={handleAddProject} className="add-button">Add Project</button>
 
       {projects.length > 0 ? (
         projects.map((project) => (
           <div key={project.id} className="project-item">
             <div className="project-header">
-              <h2>{project.title}</h2>
+              <h2 className="title">{project.title}</h2>
               <p className={project.is_published ? "published" : "unpublished"}>
                 {project.is_published ? "Published" : "Unpublished"}
               </p>
+              <div className="project-actions">
+                <button className="edit-button" onClick={() => handleEditProject(project.id)}>Edit</button>
+                <button className="locations-button" onClick={() => handleViewLocations(project.id)}>View Location/s</button>
+                <button className="delete-button" onClick={() => handleDelete(project.id)}>Delete</button>
+              </div>
             </div>
-            <p>{project.description}</p>
+            <p classname="project-description">{project.description}</p>
             
-            <div className="project-actions">
-              <Link to={`/edit-project/${project.id}`} className="edit-link">Edit</Link>
-              <button className="delete-button" onClick={() => handleDelete(project.id)}>Delete</button>
-              <Link to={`/location/${project.id}`} className="locations-button">View Location/s</Link>
-            </div>
           </div>
         ))
       ) : (

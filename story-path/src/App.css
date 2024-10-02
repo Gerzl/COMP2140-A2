@@ -1,305 +1,263 @@
-/* General app styles */
 .app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background-color: #121212; 
-  color: hsl(0, 0%, 88%);  
+    display: flex;
+    flex-direction: column;
+    background-color: #121212; /* Dark background for better contrast */
+    color: #e0e0e0;  /* Light text color */
+    min-height: 1000px;
+    min-width: 1000px;
+    align-items: top;
+    margin-top: auto;
 }
 
-/* General app-wide container for consistent page widths */
-.page-content {
-  max-width: 1200px;  
-  margin: 0 auto;
-  align-items: center;
-  text-align: center;     
-  padding: 20px;      
-  box-sizing: border-box; 
+div {
+    width: 100%;
 }
 
-.header {
-  display: flex;
-  justify-content: space-around;
-  padding: 1rem;
-  background-color: #1f1f1f;  
+/* navbar style */
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    background-color: #1f1f1f;  /* Darker navbar background */
+    min-width: 1000px;
 }
 
-.header a {
-  text-decoration: none;
-  color: #4da6ff;  
-  font-weight: bold;
-  font-size: 1.2rem;
+.navbar a {
+    text-decoration: none;
+    color: #4da6ff; 
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: auto;
+    margin-bottom: auto;
 }
-
-.header a:hover {
-  text-decoration: underline;
+.navbar-title {
+    text-decoration: none;
+    color: #ec5223; 
+    font-weight: bold;
+    font-size: 2rem;
+    margin-right: 30%;
 }
 
 /* Footer Formatting */
 .footer {
-  display: flex;
-  justify-content: space-around;
-  padding: 0rem;
-  align-items: baseline;
-  background-color: #1f1f1f;  
+    background-color: #1f1f1f;  /* Dark footer */
+    color: #e0e0e0;
+    padding: 1rem;
+    text-align: center;
+    margin-top: auto;
 }
 
-.footer a {
-  text-decoration: none;
-  color: #4da6ff;
-  font-weight: bold;
-  font-size: 1.2rem;
+.projects-content,
+.locations-content {
+    width: 70%;
+    margin: auto;
 }
 
-.footer a:hover {
-  text-decoration: underline;
+.add-button {
+  margin: 10px;
+  background-color: #4da6ff;
 }
 
-/* 
-  Landing Page Formatting
-*/
-/* .landing-content {
-  width: 100%;
-  flex-grow: 1;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: center;
-} */
-
-.features-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0rem 0;
+.add-button:hover {
+  background-color: #4dc4ff;
+  border-color: #ffffff;
 }
 
-.features-list li {
-  margin-bottom: 0.5rem;
+.project-item, .location-item {
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    background-color: #414141;
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 800px;;
 }
 
-.get-started-button {
-  display: inline-block;
-  padding: 1rem 2rem;
-  background-color: #007bff;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-  margin-top: 0.5rem;
+.project-header, 
+.location-header {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
 }
 
-.get-started-button:hover {
-  background-color: #0056b3;
-}
-
-.landing-image-container {
-  width: 50%;
-  margin: auto;
-  padding: 20px;
-}
-
-.landing-image {
-  width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-/* 
-  Projects Page Formatting 
-*/
-/* .projects-content {
-  max-width: 900px;
-  margin: auto;
-  padding: 20px;
-} */
-
-.add-project-link {
-  display: inline-block;
-  margin-bottom: 20px;
-  padding: 10px 20px;
-  background-color: #007bff;
+.published,
+.unpublished {
   color: white;
-  text-decoration: none;
+  padding: 3px;
+  margin: auto;
   border-radius: 5px;
+  margin-left: 10px;
+  font-weight: 500;
 }
 
-.add-project-link:hover {
-  background-color: #0056b3;
+.published {
+  background-color: #28a745;
 }
 
-.project-item {
-  padding: 15px;
-  background-color: rgb(61, 61, 61);
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-.project-item .project-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px; 
-}
-
-.project-item h2 {
-  font-size: 1.5rem;
-  margin: 0;
-  flex: 1;
-}
-
-.project-item p.published {
-  color: green;
-  font-weight: bold;
-  margin: 0;
-  flex-shrink: 0; 
-}
-
-.project-item p.draft {
-  color: red;
-  font-weight: bold;
-  margin: 0;
-  flex-shrink: 0;
-}
-
-.project-item .description {
-  margin: 10px 0;
-  color: #777;
-}
-
-.project-item .project-actions {
-  display: flex;
-  justify-content: flex-start;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.project-actions {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px; 
-  margin-top: 10px;
-}
-
-.project-item .edit-link,
-.project-item .delete-button {
-  padding: 5px 15px;
-  border-radius: 5px;
-  text-decoration: none;
-  border: none;
-  font-weight: bold;
-}
-
-.project-item .edit-link {
-  background-color: #17a2b8;
-  color: white;
-}
-
-.project-item .edit-link:hover {
-  background-color: #138496;
-}
-
-.project-item .delete-button {
+.unpublished {
   background-color: #dc3545;
-  color: white;
-  cursor: pointer;
 }
 
-.project-item .delete-button:hover {
-  background-color: #c82333;
+.project-actions,
+.location-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin: auto;
 }
 
-.locations-button {
-  background-color: #28a745; 
-  color: white;
-  padding: 5px 15px;
-  border-radius: 5px;
+.project-item .title {
+  display: flex;
+  white-space: nowrap;
+  max-width: 200px;
+  padding-right: 5px;
+  text-overflow: "-";
+  overflow: hidden;
+}
+
+.project-item button, 
+.location-item button {
+    border-radius: 0%;    
+    background-color: rgb(28, 28, 28);
+    padding: 8px;
+}
+
+.project-item button:hover,
+.location-item button:hover {
+  filter: brightness(80%);
+}
+
+.project-item .edit-button,
+.location-item .edit-button {
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 196, 0);
+    border-top-left-radius: 10%;
+    border-bottom-left-radius: 10%;
+}
+
+.project-item .locations-button,
+.location-item .qr-button {
+    color: rgb(0, 0, 0);
+    background-color: rgb(104, 184, 54);
+}
+
+.project-item .delete-button,
+.location-item .delete-button {
+    color: rgb(0, 0, 0);
+    background-color: rgb(235, 0, 0);
+    border-top-right-radius: 10%;
+    border-bottom-right-radius: 10%;
+}
+
+.project-item .project-description {
+  max-width: 600px;            /* Sets the maximum width to 600px */
+  overflow-wrap: break-word;   /* Allows breaking long words to prevent overflow */
+  /* For better browser support, you can include the deprecated property as well */
+  word-break: break-all;      
+  /* Alternatively, you can use 'break-all' for more aggressive breaking */
+  /* word-break: break-all; */
+  /* Optional: Adds hyphens where words break */
+  hyphens: auto;                
+  /* Additional styling (optional) */
+  padding: 16px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.locations-content .page-header {
+  display: flex;
+  justify-content: center;
+  min-width: 800px;
+}
+
+.locations-content .page-title {
   text-decoration: none;
+  color: #ffffff; 
   font-weight: bold;
+  font-size: 2.2rem;
+  /* margin-right: 30%; */
+  white-space: nowrap;
 }
 
-.locations-button:hover {
-  background-color: #218838;
+
+.printAll-button {
+  background-color: rgb(104, 184, 54); 
+  color: black;
+  white-space: nowrap;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
-
-
-/*
-  Project Form formatting
-*/
-h2 {
-  text-align: center;
-  color: #fff;
-  margin-bottom: 30px; 
+.preview-button {
+  background-color: rgb(255, 196, 0); 
+  color: rgb(0, 0, 0);
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
 
-.form-label {
-  color: #ccc; 
-  margin-bottom: 5px; 
+.header-actions {
+  display: flex;
+  margin: auto;
+  justify-content: flex-end;
+  font-size: 1rem;
 }
 
+.header-actions button:hover {
+  filter: brightness(90%);
+}
+
+/* formatting for forms. */
 .form-control,
 .form-select {
-  width: 100%;
+  min-width: 600px;
   margin-bottom: 20px;
-  background-color: #333;
+  background-color: #333; 
   color: #fff; 
-  border: 1px solid #555;
+  border: 1px solid #555; 
+  font-size: large;
 }
 
-.form-check {
-  margin-top: 20px; 
+#title.form-control {
+  min-width: 200px;
 }
 
 textarea {
-  resize: none;
+  resize: none; /* Disable resizing of text areas */
 }
 
-input::placeholder,
-textarea::placeholder {
-  color: #888; 
+/* .input-group.mb-3 {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 5px;
+} */
+
+.form-page {
+  padding-left: 20%;
 }
 
-select {
-  background-color: #333;
-  color: #fff;
+.form-label {
+  display: flex;
 }
 
-input[type="checkbox"] {
-  margin-right: 5px;
+.landing-page {
+  padding-left: 25%;
 }
 
-.mb-3 {
+.get-started-button {
+  background-color: #dc3545;
+  align-items: center;
+}
+
+.get-started-button:hover {
+  filter: brightness(90%);
+}
+
+.location-content {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  font-size: smaller;
+  line-height: 0%;
+  font-weight: 400;
 }
-
-@media (min-width: 768px) {
-  .col-md-8 {
-    padding: 0 15px;
-  }
-
-  .mb-3 {
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
-
-  .mb-3 label {
-    margin-bottom: 5px; 
-  }
-}
-
-.input-group.mb-3 {
-  display: flex;
-  justify-content: center; 
-  margin-top: 10px; 
-  padding: 5px
-}
-
-#description {
-  height: 150px; 
-  width: 100%; 
-}
-

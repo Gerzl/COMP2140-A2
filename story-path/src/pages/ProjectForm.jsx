@@ -18,7 +18,7 @@ const ProjectForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();  // Get project id from the URL
   
-  const JWT_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJuYW1lIjoiczQ3NDUyMDEifQ.tR4ZyBoqQRRNMXkEKzplDtDr5YuMBv1HoGdK2nRwuhk';
+  const JWT_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJuYW1lIjoiczQ3NDUyMDEifQ.tR4ZyBoqQRRNMXkEKzplDtDr5YuMBv1HoGdK2nRwuhk';  
 
   useEffect(() => { // is run every render
     if (id) {
@@ -54,6 +54,10 @@ const ProjectForm = () => {
     if (!title) {
       alert('Title is required');
       return;
+    }
+    if (title.length > 13) {
+      alert('Title length too long (less than 13 characters)');
+      return
     }
 
     const projectData = {
@@ -103,101 +107,103 @@ const ProjectForm = () => {
 
   return (
     <div className="page-content">
-      <div className="row">
-        <div className="col-md-8 offset-md-2">
-          <h2 className="mb-4">{isEdit ? 'Edit Project' : 'Add New Project'}</h2>
-          
-          {/* Project Form */}
-          <div className="border p-3 mb-3">
-            <div className="mb-3">
-              <label htmlFor="title" className="form-label">Title</label>
-              <input
-                type="text"
-                className="form-control"
-                id="title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="The name of your project"
-                required
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="description" className="form-label">Description</label>
-              <textarea
-                className="form-control"
-                id="description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder="Provide a brief description of your project."
-                required
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="instructions" className="form-label">Instructions</label>
-              <textarea
-                className="form-control"
-                id="instructions"
-                value={instructions}
-                onChange={(e) => setInstructions(e.target.value)}
-                placeholder="Instructions for participants."
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="initialClue" className="form-label">Initial Clue</label>
-              <textarea
-                className="form-control"
-                id="initialClue"
-                value={initialClue}
-                onChange={(e) => setInitialClue(e.target.value)}
-                placeholder="The first clue to start the project."
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="homescreenDisplay" className="form-label">Homescreen Display</label>
-              <select
-                className="form-select"
-                id="homescreenDisplay"
-                value={homescreenDisplay}
-                onChange={(e) => setHomescreenDisplay(e.target.value)}
-              >
-                <option value="Display initial clue">Display initial clue</option>
-                <option value="Display all locations">Display all locations</option>
-              </select>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="participantScoring" className="form-label">Participant Scoring</label>
-              <select
-                className="form-select"
-                id="participantScoring"
-                value={participantScoring}
-                onChange={(e) => setParticipantScoring(e.target.value)}
-              >
-                <option value="Not Scored">Not Scored</option>
-                <option value="Number of Scanned QR Codes">Number of Scanned QR Codes</option>
-                <option value="Number of Locations Entered">Number of Locations Entered</option>
-              </select>
-            </div>
-            <div className="mb-3 form-check">
-              <input
-                type="checkbox"
-                className="form-check-input"
-                id="published"
-                checked={isPublished}
-                onChange={() => setIsPublished(!isPublished)}
-              />
-              <label htmlFor="published" className="form-check-label">Published</label>
-            </div>
-          </div>
+      <div className="form-page">
 
-          {/* Form submission button */}
-          <div className="input-group mb-3">
-            <button
-              className="btn btn-primary"
-              onClick={submitForm}
-              // disabled={!title || !description}
-            >
-              {isEdit ? 'Save Project' : 'Create Project'}
-            </button>
+        <div className="row">
+          <div className="col-md-8 offset-md-2">
+            <h2 className="mb-4">{isEdit ? 'Edit Project' : 'Add New Project'}</h2>
+            
+            {/* Project Form */}
+            <div className="border p-3 mb-3">
+              <div className="mb-3">
+                <label htmlFor="title" className="form-label">Title</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  placeholder="The name of your project"
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="description" className="form-label">Description</label>
+                <textarea
+                  className="form-control"
+                  id="description"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  placeholder="Provide a brief description of your project."
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="instructions" className="form-label">Instructions</label>
+                <textarea
+                  className="form-control"
+                  id="instructions"
+                  value={instructions}
+                  onChange={(e) => setInstructions(e.target.value)}
+                  placeholder="Instructions for participants."
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="initialClue" className="form-label">Initial Clue</label>
+                <textarea
+                  className="form-control"
+                  id="initialClue"
+                  value={initialClue}
+                  onChange={(e) => setInitialClue(e.target.value)}
+                  placeholder="The first clue to start the project."
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="homescreenDisplay" className="form-label">Homescreen Display</label>
+                <select
+                  className="form-select"
+                  id="homescreenDisplay"
+                  value={homescreenDisplay}
+                  onChange={(e) => setHomescreenDisplay(e.target.value)}
+                >
+                  <option value="Display initial clue">Display initial clue</option>
+                  <option value="Display all locations">Display all locations</option>
+                </select>
+              </div>
+              <div className="mb-3">
+                <label htmlFor="participantScoring" className="form-label">Participant Scoring</label>
+                <select
+                  className="form-select"
+                  id="participantScoring"
+                  value={participantScoring}
+                  onChange={(e) => setParticipantScoring(e.target.value)}
+                >
+                  <option value="Not Scored">Not Scored</option>
+                  <option value="Number of Scanned QR Codes">Number of Scanned QR Codes</option>
+                  <option value="Number of Locations Entered">Number of Locations Entered</option>
+                </select>
+              </div>
+              <div className="mb-3 form-check">
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  id="published"
+                  checked={isPublished}
+                  onChange={() => setIsPublished(!isPublished)}
+                />
+                <label htmlFor="published" className="form-check-label">Published</label>
+              </div>
+            </div>
+
+            {/* Form submission button */}
+            <div className="input-group mb-3">
+              <button
+                className="btn btn-primary"
+                onClick={submitForm}
+              >
+                {isEdit ? 'Save Project' : 'Create Project'}
+              </button>
+            </div>
           </div>
         </div>
       </div>
