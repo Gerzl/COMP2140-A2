@@ -1,4 +1,4 @@
-General app styles
+/* General app styles */
 .app {
   display: flex;
   flex-direction: column;
@@ -69,7 +69,7 @@ General app styles
 .features-list {
   list-style-type: none;
   padding: 0;
-  margin: 2rem 0;
+  margin: 0rem 0;
 }
 
 .features-list li {
@@ -83,7 +83,7 @@ General app styles
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
 }
 
 .get-started-button:hover {
@@ -91,9 +91,9 @@ General app styles
 }
 
 .landing-image-container {
-  width: 75%;
-  margin: 0;
-  padding: 0;
+  width: 50%;
+  margin: auto;
+  padding: 20px;
 }
 
 .landing-image {

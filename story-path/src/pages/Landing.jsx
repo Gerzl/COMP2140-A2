@@ -21,7 +21,7 @@ function Landing() {
       {/* Wrap the image with a container to make it full-width */}
       <div className="landing-image-container">
         <img
-          src="src\assets\story_path_home.png"
+          src="\assets\story_path_home.png"
           alt="Illustration for StoryPath"
           className="landing-image"
         />

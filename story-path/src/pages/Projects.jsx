@@ -33,6 +33,8 @@ function Projects() {
       .catch((error) => console.error('Error deleting project:', error));
   };
 
+
+
   return (
     <div className="page-content">
       <h1>Projects</h1>
@@ -43,16 +45,16 @@ function Projects() {
           <div key={project.id} className="project-item">
             <div className="project-header">
               <h2>{project.title}</h2>
-              <p className={project.is_published ? "published" : "draft"}>
+              <p className={project.is_published ? "published" : "unpublished"}>
                 {project.is_published ? "Published" : "Unpublished"}
               </p>
             </div>
-            <p>{project.description}</p>  {/* Removed project.status as it's not available */}
+            <p>{project.description}</p>
             
             <div className="project-actions">
               <Link to={`/edit-project/${project.id}`} className="edit-link">Edit</Link>
               <button className="delete-button" onClick={() => handleDelete(project.id)}>Delete</button>
-              <button className="locations-button">View Location/s</button>
+              <Link to={`/location/${project.id}`} className="locations-button">View Location/s</Link>
             </div>
           </div>
         ))
