@@ -5,6 +5,8 @@ import Projects from './pages/Projects';
 import AddEditProject from './pages/ProjectForm';  // Combined Add/Edit component
 import Navbar from './pages/Navbar';
 import './App.css';
+import Locations from './pages/Locations';
+import AddEditLocation from './pages/LocationForm';
 
 function App() {
   return (
@@ -19,6 +21,9 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/add-project" element={<AddEditProject />} />
           <Route path="/edit-project/:id" element={<AddEditProject />} />
+          <Route path="/locations/:id" element={<Locations />} />
+          <Route path="/add-location/:projectId" element={<AddEditLocation />} />
+          <Route path="/edit-location/:projectId/:id" element={<AddEditLocation />} />
         </Routes>
 
         <footer className="footer">

@@ -10,7 +10,7 @@ function Projects() {
     fetch('https://0b5ff8b0.uqcloud.net/api/project', {
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${JWT_TOKEN}`,  // Replace with your JWT token
+        'Authorization': `Bearer ${JWT_TOKEN}`, 
       },
     })
       .then((response) => response.json())
@@ -23,7 +23,7 @@ function Projects() {
     fetch(`https://0b5ff8b0.uqcloud.net/api/project?id=eq.${id}`, {
       method: 'DELETE',
       headers: {
-        'Authorization': `Bearer ${JWT_TOKEN}`,  // Replace with your JWT token
+        'Authorization': `Bearer ${JWT_TOKEN}`, 
       },
     })
       .then(() => {
@@ -36,7 +36,7 @@ function Projects() {
   return (
     <div className="projects-content">
       <h1>Projects</h1>
-      <Link to="/add-project" className="add-project-link">Add Project</Link>
+      <a href="/add-project" className="add-project-link"><button>Add Project</button></a>
 
       {projects.length > 0 ? (
         projects.map((project) => (
@@ -50,9 +50,9 @@ function Projects() {
             <p>{project.description}</p>  {/* Removed project.status as it's not available */}
             
             <div className="project-actions">
-              <Link to={`/edit-project/${project.id}`} className="edit-link">Edit</Link>
+              <a href={`/edit-project/${project.id}`} className="edit-button"><button>Edit</button></a>
               <button className="delete-button" onClick={() => handleDelete(project.id)}>Delete</button>
-              <button className="locations-button">View Location/s</button>
+              <a href={`/locations/${project.id}`} className="locations-button"><button>View Location/s</button></a>
             </div>
           </div>
         ))

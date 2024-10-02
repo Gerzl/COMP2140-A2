@@ -1,304 +1,77 @@
-/* General app styles */
 .app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background-color: #121212; /* Dark background for better contrast */
-  color: #e0e0e0;  /* Light text color */
+    display: flex;
+    flex-direction: column;
+    background-color: #121212; /* Dark background for better contrast */
+    color: #e0e0e0;  /* Light text color */
+    min-height: 1000px;
 }
 
-/* Header styles */
-.header {
-  background-color: #1f1f1f;  /* Darker header background */
-  padding: 1rem;
-  text-align: center;
+div {
+    width: 100%;
 }
 
-.header h1 {
-  margin: 0;
-  color: #6c63ff;  /* Keep the accent color */
-}
-
-.header nav a {
-  margin: 0 1rem;
-  color: #4da6ff;  /* Light blue for links */
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.header nav a:hover {
-  text-decoration: underline;
-}
-
-/* 
-  Navbar Formatting 
-*/
+/* navbar style */
 .navbar {
-  display: flex;
-  justify-content: space-around;
-  padding: 1rem;
-  background-color: #1f1f1f;  /* Darker navbar background */
+    display: flex;
+    justify-content: space-around;
+    background-color: #1f1f1f;  /* Darker navbar background */
 }
-
 .navbar a {
-  text-decoration: none;
-  color: #4da6ff;  /* Light blue links */
-  font-weight: bold;
-  font-size: 1.2rem;
+    text-decoration: none;
+    color: #4da6ff; 
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: auto;
+    margin-bottom: auto;
 }
-
-.navbar a:hover {
-  text-decoration: underline;
+.navbar-title {
+    text-decoration: none;
+    color: #ec5223; 
+    font-weight: bold;
+    font-size: 2rem;
+    margin-right: 30%;
 }
 
 /* Footer styles */
 .footer {
-  background-color: #1f1f1f;  /* Dark footer */
-  color: #e0e0e0;
-  padding: 1rem;
-  text-align: center;
-  margin-top: auto;
+    background-color: #1f1f1f;  /* Dark footer */
+    color: #e0e0e0;
+    padding: 1rem;
+    text-align: center;
+    margin-top: auto;
 }
 
-/* 
-  Landing Page Formatting
-*/
-.landing-content {
-  width: 800px;
-  flex-grow: 1;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-  text-align: center;
-}
-
-.features-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 2rem 0;
-}
-
-.features-list li {
-  margin-bottom: 0.5rem;
-}
-
-.get-started-button {
-  display: inline-block;
-  padding: 1rem 2rem;
-  background-color: #007bff;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-  margin-top: 2rem;
-}
-
-.get-started-button:hover {
-  background-color: #0056b3;
-}
-
-.landing-image-container {
-  width: 75%;
-  margin: 0;
-  padding: 0;
-}
-
-.landing-image {
-  width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-/* 
-  Projects Page Formatting 
-*/
 .projects-content {
-  max-width: 900px;
-  margin: auto;
-  padding: 20px;
-}
-
-.add-project-link {
-  display: inline-block;
-  margin-bottom: 20px;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-}
-
-.add-project-link:hover {
-  background-color: #0056b3;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .project-item {
-  padding: 15px;
-  background-color: rgb(61, 61, 61);
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin-bottom: 10px;
+    padding: 20px;
+    background-color: rgb(61, 61, 61);
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
-.project-item .project-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px; /* Space between title/status and description */
-}
-
-.project-item h2 {
-  font-size: 1.5rem;
-  margin: 0;
-  flex: 1; /* Title takes remaining space */
-}
-
-.project-item p.published {
-  color: green;
-  font-weight: bold;
-  margin: 0;
-  flex-shrink: 0; /* Prevent shrinking */
-}
-
-.project-item p.draft {
-  color: red;
-  font-weight: bold;
-  margin: 0;
-  flex-shrink: 0;
-}
-
-.project-item .description {
-  margin: 10px 0;
-  color: #777;
-}
-
-.project-item .project-actions {
-  display: flex;
-  justify-content: flex-start;
-  gap: 10px;
-  margin-top: 10px;
+.project-header {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
 }
 
 .project-actions {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px; /* Add space between buttons */
-  margin-top: 10px;
+    display: flex;
+    align-items: left;
+    max-width: 400px;
 }
 
-.project-item .edit-link,
-.project-item .delete-button {
-  padding: 5px 15px;
-  border-radius: 5px;
-  text-decoration: none;
-  border: none;
-  font-weight: bold;
+.project-item button {
+    border-radius: 0%;    
 }
 
-.project-item .edit-link {
-  background-color: #17a2b8;
-  color: white;
-}
-
-.project-item .edit-link:hover {
-  background-color: #138496;
-}
-
-.project-item .delete-button {
-  background-color: #dc3545;
-  color: white;
-  cursor: pointer;
-}
-
-.project-item .delete-button:hover {
-  background-color: #c82333;
-}
-
-.locations-button {
-  background-color: #28a745; /* Different color for contrast */
-  color: white;
-  padding: 5px 15px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.locations-button:hover {
-  background-color: #218838;
-}
-
-
-
-/*
-  ProjectForm formatting
-*/
-h2 {
-  text-align: center;
-  color: #fff;
-  margin-bottom: 30px; /* Extra space below the title */
-}
-
-.form-label {
-  color: #ccc; /* Adjust the label color */
-  margin-bottom: 5px; /* Small space between label and input */
-}
-
-.form-control,
-.form-select {
-  width: 100%; /* Full width for the inputs */
-  margin-bottom: 20px; /* Space below each input */
-  background-color: #333; /* Darker background for inputs */
-  color: #fff; /* Light text color */
-  border: 1px solid #555; /* Subtle border */
-}
-
-.form-check {
-  margin-top: 20px; /* Add margin above the checkbox */
-}
-
-textarea {
-  resize: none; /* Disable resizing of text areas */
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: #888; /* Lighter placeholder text */
-}
-
-select {
-  background-color: #333;
-  color: #fff;
-}
-
-input[type="checkbox"] {
-  margin-right: 10px;
-}
-
-.mb-3 {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-@media (min-width: 768px) {
-  .col-md-8 {
-    padding: 0 15px;
-  }
-
-  .mb-3 {
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
-
-  .mb-3 label {
-    margin-bottom: 5px; /* Ensure vertical spacing is consistent */
-  }
-}
-
-.input-group.mb-3 {
-  display: flex;
-  justify-content: center; /* Center the button horizontally */
-  margin-top: 10px; /* Add some space above the button */
-  padding: 5px
+.project-item .edit-button {
+    color: #ec5223;
+    background-color: #49fff6;
 }
