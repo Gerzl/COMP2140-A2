@@ -54,11 +54,14 @@ const LocationForm = () => {
     }
   }, [id]);
 
+  const cancelForm = async () => {
+    navigate(`/locations/${projectId}`)
+  }
+
   const submitForm = async () => {
     // Validation check for location name
     const errors = {};
     if (!locationName) errors.locationName = 'Location name is required';
-
     if (Object.keys(errors).length > 0) {
       alert('Location name is required');
       setValidationErrors(errors);
@@ -212,13 +215,19 @@ const LocationForm = () => {
                 </div>
               </div>
 
-              {/* Form submission button */}
               <div className="input-group mb-3">
                 <button
                   className="btn btn-primary"
                   onClick={submitForm}
                 >
                   {isEdit ? 'Save Location' : 'Create Location'}
+                </button>
+
+                <button
+                  className="btn btn-primary"
+                  onClick={cancelForm}
+                >
+                  {isEdit ? 'Cancel Edit' : 'Cancel Form'}
                 </button>
               </div>
             </div>

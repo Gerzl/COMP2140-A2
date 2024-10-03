@@ -17,7 +17,7 @@ function Locations() {
           },
         })
           .then((response) => response.json())
-          .then((data) => setLocations(data))
+          .then((data) => setLocations(data.filter(location => location.project_id == projectId)))
           .catch((error) => console.error('Error fetching locations:', error));
           fetch(`https://0b5ff8b0.uqcloud.net/api/project?id=eq.${projectId}`, {
             method: 'GET',
@@ -36,7 +36,7 @@ function Locations() {
           })
           .catch((error) => console.error('Error fetching project title:', error));
     }, [projectId]);
-
+    console.log(locations)
     const handleDelete = (id) => {
         // Delete location from the API
         fetch(`https://0b5ff8b0.uqcloud.net/api/location?id=eq.${id}`, {
