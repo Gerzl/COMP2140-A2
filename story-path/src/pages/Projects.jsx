@@ -68,7 +68,7 @@ function Projects() {
                 <button className="delete-button" onClick={() => handleDelete(project.id)}>Delete</button>
               </div>
             </div>
-            <p classname="project-description">{project.description}</p>
+            <p className="project-description">{project.description}</p>
             
           </div>
         ))
