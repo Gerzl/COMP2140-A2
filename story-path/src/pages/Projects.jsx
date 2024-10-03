@@ -51,7 +51,9 @@ function Projects() {
 
   return (
     <div className="projects-content">
-      <h1>Projects</h1>
+      <div className='page-header'>
+        <h1 className='page-title'>Projects</h1>
+      </div>
       <button onClick={handleAddProject} className="add-button">Add Project</button>
 
       {projects.length > 0 ? (

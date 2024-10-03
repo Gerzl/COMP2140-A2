@@ -55,8 +55,8 @@ const ProjectForm = () => {
       alert('Title is required');
       return;
     }
-    if (title.length > 13) {
-      alert('Title length too long (less than 13 characters)');
+    if (title.length > 17) {
+      alert('Title length too long (less than 17 characters)');
       return
     }
 

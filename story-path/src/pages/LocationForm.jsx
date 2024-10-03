@@ -1,26 +1,76 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+// importing map stuff
+import { MapContainer, TileLayer, useMap, useMapEvents } from 'react-leaflet'
+// importing map related stuff
+import {Marker, Popup} from 'react-leaflet'
+import 'leaflet/dist/leaflet.css';
 
+/**
+ * LocationForm handles creating or editing a location within a project.
+ *
+ * @returns {JSX} The form to be displayed for adding or editing a location
+ */
 const LocationForm = () => {
-  // State for form inputs (Location-specific)
+  // Default Options for forms
   const [locationName, setLocationName] = useState('');
-  const [locationTrigger, setLocationTrigger] = useState('');
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
+  const [locationTrigger, setLocationTrigger] = useState('Location Entry'); 
+  const [latitude, setLatitude] = useState('0');
+  const [longitude, setLongitude] = useState('0');
   const [locationOrder, setLocationOrder] = useState(1);
   const [locationContent, setLocationContent] = useState('');
   const [clue, setClue] = useState('');
   const [scorePoints, setScorePoints] = useState(0);
-  const [validationErrors, setValidationErrors] = useState({});
 
   const [isEdit, setIsEdit] = useState(false);
   const [locationId, setLocationId] = useState(null);
   const { projectId, id } = useParams();  // Get location id and project id from the URL
+  const defaultCoordinates = [-27.499443772628354, 153.01529617736375]
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Hook for navigation
   
+  // JWT token for accessing API
   const JWT_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJuYW1lIjoiczQ3NDUyMDEifQ.tR4ZyBoqQRRNMXkEKzplDtDr5YuMBv1HoGdK2nRwuhk';  
 
+   // ReactQuill formatting info
+  const formats = [
+    "header",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "link",
+    "color",
+    "image",
+    "background",
+    "align",
+    "size",
+    "font"
+  ];
+
+  // ReactQuill modules info
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [{ size: [] }],
+      [{ font: [] }],
+      [{ align: ["right", "center", "justify"] }],
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["link", "image"],
+      [{ color: ["red", "#785412"] }],
+      [{ background: ["red", "#785412"] }]
+    ]
+  };
+
+  /**
+   * UseEffect of LocationForm is used to fetch information if editing.
+   */
   useEffect(() => {
     if (id) {
       setIsEdit(true);
@@ -53,18 +103,23 @@ const LocationForm = () => {
         });
     }
   }, [id]);
-
+  
+  /**
+   * Returns user to the appropriate locations page if they wish to cancel
+   * either the edit or creation of a location.
+   */
   const cancelForm = async () => {
     navigate(`/locations/${projectId}`)
   }
 
+  /**
+   * Submits form to save or update location.
+   */
   const submitForm = async () => {
-    // Validation check for location name
     const errors = {};
     if (!locationName) errors.locationName = 'Location name is required';
     if (Object.keys(errors).length > 0) {
       alert('Location name is required');
-      setValidationErrors(errors);
       return;
     }
 
@@ -83,6 +138,7 @@ const LocationForm = () => {
       username: "s4745201",  // Hardcoded username
     };
 
+    // Gets appropriate url and method if editing
     const url = isEdit
       ? `https://0b5ff8b0.uqcloud.net/api/location?id=eq.${locationId}`
       : 'https://0b5ff8b0.uqcloud.net/api/location';
@@ -104,8 +160,7 @@ const LocationForm = () => {
         console.error('Error details:', errorDetails);
         throw new Error('Failed to save location');
       }
-  
-      // Check if response has a body before parsing
+
       const data = response.headers.get("content-length") > 0 ? await response.json() : {}; 
       alert(`Location ${isEdit ? 'updated' : 'created'} successfully!`);
       navigate(`/locations/${projectId}`);
@@ -114,7 +169,37 @@ const LocationForm = () => {
       alert('Failed to save location. Please try again.');
     }
   };
-
+  
+  /**
+   * LocationMarker function allowing users to click on the map
+   * to select a location coordinate which is seen in latitude and longtitude
+   * variables.
+   * 
+   * @returns [int, int] - An array with two ints, latitude and longtitude in that order. 
+   */
+  function LocationMarker() {
+    const [position, setPosition] = useState(null);
+  
+    useMapEvents({
+      click(event) {
+        // Get the clicked location's coordinates
+        const { lat, lng } = event.latlng;
+        setLatitude(lat);
+        setLongitude(lng); 
+      },
+    });
+    
+    return position === null ? null : (
+      <Marker position={position}>
+        <Popup>
+          Selected Position: <br />
+          Latitude: {position[0]}, Longitude: {position[1]}
+        </Popup>
+      </Marker>
+    );
+  }
+  
+  // Main render for location form.
   return (
     <div className="page-content">
       <div className="form-page">
@@ -139,14 +224,32 @@ const LocationForm = () => {
                 </div>
                 <div className="mb-3">
                   <label htmlFor="locationTrigger" className="form-label">Location Trigger</label>
-                  <input
+                  <select
                     type="text"
                     className="form-control"
                     id="locationTrigger"
                     value={locationTrigger}
                     onChange={(e) => setLocationTrigger(e.target.value)}
                     placeholder="Enter location trigger"
-                  />
+                  >
+                    <option value="Location Entry">Location Entry</option>
+                    <option value="QR Code Scan">QR Code Scan</option>
+                    <option value="Both Location Entry and QR Code Scan">Both Location Entry and QR Code Scan</option>
+                  </select>
+                </div>
+                <div className='map-container' style={{ height: '400px', width: '100%' }}> 
+                  <MapContainer center={defaultCoordinates} zoom={13} scrollWheelZoom={true} style={{ height: '100%', width: '100%' }}>
+                    <TileLayer
+                      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    <LocationMarker  />
+                    <Marker position={[-27.499443772628354, 153.01529617736375]}>
+                      <Popup>
+                        A pretty CSS3 popup. <br /> Easily customizable.
+                      </Popup>
+                    </Marker>
+                  </MapContainer>
                 </div>
                 <div className="mb-3">
                   <label htmlFor="latitude" className="form-label">Latitude</label>
@@ -183,17 +286,19 @@ const LocationForm = () => {
                 </div>
                 <div className="mb-3">
                   <label htmlFor="locationContent" className="form-label">Location Content</label>
-                  <textarea
-                    className="form-control"
-                    id="locationContent"
-                    value={locationContent}
-                    onChange={(e) => setLocationContent(e.target.value)}
-                    placeholder="Enter content for this location"
-                  />
+                  <div className="editor-container">
+                    <ReactQuill
+                      theme="snow"
+                      modules={modules}
+                      formats={formats}
+                      value={locationContent}
+                      onChange={(content) => setLocationContent(content)}
+                    />
+                  </div>
                 </div>
                 <div className="mb-3">
                   <label htmlFor="clue" className="form-label">Clue</label>
-                  <input
+                  <textarea
                     type="text"
                     className="form-control"
                     id="clue"

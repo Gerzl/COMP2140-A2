@@ -398,7 +398,9 @@ input[type="checkbox"] {
   color: white;
 }
 
-
+.location-details h2 {
+  font-size: smaller;
+}
 /*
   LocationForm formatting
  */

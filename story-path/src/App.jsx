@@ -8,7 +8,7 @@ import Header from './pages/Header';
 import './App.css';
 import Locations from './pages/Locations';
 import AddEditLocation from './pages/LocationForm';
-import Preview from './pages/PreviewPages/Preview';
+import Preview from './pages/Preview';
 
 function App() {
   return (

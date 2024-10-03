@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     background-color: #121212; /* Dark background for better contrast */
-    color: #e0e0e0;  /* Light text color */
+    color: #767676;  /* Light text color */
     min-height: 1000px;
     min-width: 1000px;
     align-items: top;
@@ -11,6 +11,33 @@
 
 div {
     width: 100%;
+}
+
+.landing-page .page-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  /* min-width: 00px; */
+  max-width: 100%;
+  margin-top: 10%;
+}
+
+.landing-page .app-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 600px;
+}
+
+.landing-page .app-image {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-end; */
+  align-items: center;
+  min-width: 400px;
 }
 
 /* navbar style */
@@ -37,19 +64,28 @@ div {
     margin-right: 30%;
 }
 
-/* Footer Formatting */
 .footer {
-    background-color: #1f1f1f;  /* Dark footer */
+    background-color: #1f1f1f; 
     color: #e0e0e0;
     padding: 1rem;
     text-align: center;
     margin-top: auto;
 }
 
+.footer .links {
+  display: flex;
+  flex-direction: horizontal;
+  justify-content: space-around;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .projects-content,
 .locations-content {
-    width: 70%;
-    margin: auto;
+    width: 60%;
+    padding-left: 18%;
+    padding-right: 20%;
 }
 
 .add-button {
@@ -63,16 +99,17 @@ div {
 }
 
 .project-item, .location-item {
-    border: 2px solid #ffffff;
+    border: 5px solid #3a3a3a;
     border-radius: 10px;
     padding-right: 10px;
     padding-left: 10px;
     margin-bottom: 20px;
-    background-color: #414141;
+    background-color: #ffffff;
     display: block;
     justify-content: space-between;
     align-items: center;
-    min-width: 800px;;
+    min-width: 400px;;
+    min-height: 360px;
 }
 
 .project-header, 
@@ -88,7 +125,6 @@ div {
   padding: 3px;
   margin: auto;
   border-radius: 5px;
-  margin-left: 10px;
   font-weight: 500;
 }
 
@@ -110,10 +146,11 @@ div {
 .project-item .title {
   display: flex;
   white-space: nowrap;
-  max-width: 200px;
+  /* max-width: 300px; */
   padding-right: 5px;
   text-overflow: "-";
   overflow: hidden;
+  width: 400px;
 }
 
 .project-item button, 
@@ -165,21 +202,23 @@ div {
   line-height: 1.5;
 }
 
-.locations-content .page-header {
+.page-header {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: left;
   min-width: 800px;
+  height: 150px;
+  align-items: center;
 }
 
-.locations-content .page-title {
+.locations-content .page-title,
+.projects-content .page-title {
   text-decoration: none;
-  color: #ffffff; 
+  color: #fff; 
   font-weight: bold;
-  font-size: 2.2rem;
-  /* margin-right: 30%; */
+  font-size: 2rem;
   white-space: nowrap;
 }
-
 
 .printAll-button {
   background-color: rgb(104, 184, 54); 
@@ -210,7 +249,7 @@ div {
 /* formatting for forms. */
 .form-control,
 .form-select {
-  min-width: 600px;
+  width: 100%;
   margin-bottom: 20px;
   background-color: #333; 
   color: #fff; 
@@ -234,15 +273,13 @@ textarea {
 } */
 
 .form-page {
-  padding-left: 20%;
+  max-width: 50%;
+  padding-left: 25%;
+  padding-right: 25%;
 }
 
 .form-label {
   display: flex;
-}
-
-.landing-page {
-  padding-left: 25%;
 }
 
 .get-started-button {
@@ -254,10 +291,94 @@ textarea {
   filter: brightness(90%);
 }
 
+.editor-container {
+  max-width: 200px;       /* Ensure it is responsive */
+  min-width: 100%;      /* Set a minimum width */
+  /* margin: auto;        Center the editor horizontally */
+}
+
+.ql-container {
+  min-height: 200px;     /* Optional: Set a minimum height for the   
+  editor */
+}
+
+.ql-editor {
+  font-size: 16px;       /* Optional: Customize font size if needed */
+}
+
 .location-content {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.location-details {
+  flex: 1 1 300%;
+  margin-right: 20px;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.location-details h2 {
   font-size: smaller;
-  line-height: 0%;
-  font-weight: 400;
+}
+
+.map-container {
+  height: 400px; 
+  width: 600px;
+}
+
+.display-simulation {
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  text-align: center;
+  width: 540px;              /* Width for the container */
+  height: 1080px;
+  border: 5px solid #ffffff; 
+  border-radius: 10px;
+  border-top-width: 80px;
+  border-bottom-width: 80px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.scoreboard {
+  display: flex;
+  flex-direction: horizontal;
+  justify-content: space-between;
+  padding-left: 10%;
+  padding-right: 10%;
+  width: 80%;
+}
+
+.scoreboard .score, 
+.scoreboard .visited {
+  width: 200px;
+  background-color: white;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.preview-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  align-items: center;  
+}
+
+.location-dropdown {
+  width: 100%;
+}
+
+.location-dropdown .dropdown {
+  width: 100%;
+  height: 30px;
+  font-size: 20px;
+  text-align: center;
 }
